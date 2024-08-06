@@ -1,4 +1,7 @@
 import functions_framework
+from google_sheet import GoogleSheetManager
+import os
+
 
 @functions_framework.http
 def hello_http(request):
@@ -67,7 +70,8 @@ def hello_http(request):
     }
     """
     
-    text = "Here is the info requested response."
+    # text = "Here is the info requested response."
+    text = str(request_doc_info())
     parameters = {"cancel-period": "2"}
     jsonResponse = {
         "fulfillmentResponse": {
@@ -85,3 +89,15 @@ def hello_http(request):
     }
 
     return jsonResponse
+
+
+def request_doc_info():
+    sheet_id = "1GJKFrXgyPWngS4Uz44z_xuu3nXOJdywOY8tBsF8F_Jg"
+    credentials_file = os.path.join("credentials.json")
+    sheet_name = "Sheet1"
+
+    google_sheet_manager = GoogleSheetManager(sheet_id, credentials_file)
+
+    doc_val = google_sheet_manager.read_sheet(sheet_name)
+    return doc_val
+
