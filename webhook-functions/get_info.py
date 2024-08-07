@@ -1,6 +1,7 @@
 import functions_framework
 from google_sheet import GoogleSheetManager
 import os
+from data_manager import DataManager
 
 
 @functions_framework.http
@@ -20,8 +21,14 @@ def hello_http(request):
     print("The request is ", request)
     print("The request json is ", request_json)
     print("The request args is ", request_args)
-    
-    text = str(request_doc_info())
+
+    phone_number = request_json['sessionInfo']['parameters']['phone_number']
+    print("phone number is", phone_number)
+
+    doc_info = request_doc_info()
+    dm = DataManager(doc_info)
+
+    text = str(doc_info)
     parameters = {"cancel-period": "2"}
     jsonResponse = {
         "fulfillmentResponse": {
