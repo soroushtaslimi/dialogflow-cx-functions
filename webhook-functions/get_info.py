@@ -16,61 +16,11 @@ def hello_http(request):
     """
     request_json = request.get_json(silent=True)
     request_args = request.args
-
-    if request_json and 'name' in request_json:
-        name = request_json['name']
-    elif request_args and 'name' in request_args:
-        name = request_args['name']
-    else:
-        name = 'World'
-        
-    message = 'Hello {}!'.format(name)
     
     print("The request is ", request)
     print("The request json is ", request_json)
     print("The request args is ", request_args)
     
-    """
-    jsonResponse = {
-        'fullfillment_response': {
-            'messages': [
-                {
-                    'text': {
-                        'text': [message]
-                    }
-                }
-            ]
-        }
-    }
-    """
-    """
-    jsonResponse = {
-        "fulfillmentText": "Here is the information you requested.",
-        "fulfillmentMessages": [
-            {
-                "text": {
-                    "text": ["Here is the information you requested."]
-                }
-            }
-        ],
-        "source": "get-info-function"
-    }
-    """
-    
-    """
-    jsonResponse = {
-        "fulfillmentText": "Here is the fulfillmentText you requested.",
-        "fulfillmentMessages": [
-            {
-                "text": {
-                    "text": ["Here is the information you requested."]
-                }
-            }
-        ]
-    }
-    """
-    
-    # text = "Here is the info requested response."
     text = str(request_doc_info())
     parameters = {"cancel-period": "2"}
     jsonResponse = {
