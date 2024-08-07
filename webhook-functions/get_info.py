@@ -28,7 +28,9 @@ def hello_http(request):
     doc_info = request_doc_info()
     dm = DataManager(doc_info)
 
-    text = str(doc_info)
+    customer_info = dm.get_row(phone_number)
+
+    text = str(customer_info)
     parameters = {"cancel-period": "2"}
     jsonResponse = {
         "fulfillmentResponse": {

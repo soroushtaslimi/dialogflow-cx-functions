@@ -8,4 +8,5 @@ class DataManager():
         self.df = pd.DataFrame(rows, columns=columns)
         print(self.df)
 
-    
+    def get_row(self, phone_number):
+        return self.df[self.df["phone"] == phone_number]
