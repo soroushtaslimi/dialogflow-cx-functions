@@ -30,8 +30,15 @@ def hello_http(request):
 
     customer_info = dm.get_row(phone_number)
 
-    text = str(customer_info)
+    # text = str(customer_info)
+    text = "thank you for calling."
     parameters = {"cancel-period": "2"}
+    if not customer_info.empty:
+        text = "Hi" + customer_info['name'] + "thank you for calling"
+        parameters['name'] = customer_info['name']
+        parameters['last-task'] = customer_info['last task']
+        parameters['last-task-date'] = customer_info['last task date']
+
     jsonResponse = {
         "fulfillmentResponse": {
             "messages": [
