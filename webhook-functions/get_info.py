@@ -34,10 +34,10 @@ def hello_http(request):
     text = "thank you for calling."
     parameters = {"cancel-period": "2"}
     if not customer_info.empty:
-        text = "Hi" + customer_info['name'] + "thank you for calling"
-        parameters['name'] = customer_info['name']
-        parameters['last-task'] = customer_info['last task']
-        parameters['last-task-date'] = customer_info['last task date']
+        text = "Hi " + customer_info['name'].values[0] + "thank you for calling"
+        parameters['name'] = customer_info['name'].values[0]
+        parameters['last-task'] = customer_info['last task'].values[0]
+        parameters['last-task-date'] = customer_info['last task date'].values[0]
 
     jsonResponse = {
         "fulfillmentResponse": {
