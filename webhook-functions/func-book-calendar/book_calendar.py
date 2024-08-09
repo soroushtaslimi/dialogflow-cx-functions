@@ -17,7 +17,7 @@ def hello_http(request):
     start_date = request_json['sessionInfo']['parameters']['start_date']
     print(start_date)
 
-    text = "welcome to calendar booking func."
+    text = "the provided date time is " + str(start_date)
     parameters = {}
 
     jsonResponse = {
